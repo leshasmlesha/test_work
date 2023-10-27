@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { NatsModule } from './Nats/Nats.module';
 
-@Module({})
+@Module({ imports: [NatsModule] })
 export class Modules {}
