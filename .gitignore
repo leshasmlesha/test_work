@@ -2,3 +2,4 @@
 .yarnrc.yml
 node_modules
 dist
+config/*.json
