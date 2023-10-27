@@ -37,6 +37,6 @@ export class StudentModel extends Model<
     foreignKey: 'personalCode',
     sourceKey: 'personalCode',
   })
-  Grades: NonAttribute<GradeModel[]>;
-  createGrade: HasManyCreateAssociationMixin<GradeModel, 'personalCode'>;
+  statistic: NonAttribute<GradeModel[]>;
+  createStatistic: HasManyCreateAssociationMixin<GradeModel, 'personalCode'>;
 }

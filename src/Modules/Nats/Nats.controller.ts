@@ -66,7 +66,7 @@ export class NatsController implements OnModuleInit, OnApplicationBootstrap {
               }
               throw err;
             }),
-            mergeMap((student) => student.createGrade({ ...data })),
+            mergeMap((student) => student.createStatistic({ ...data })),
           ),
         ),
       )
