@@ -33,7 +33,7 @@ export class GradeModel extends Model<
     foreignKey: 'personalCode',
     targetKey: 'personalCode',
   })
-  Student: NonAttribute<StudentModel>;
+  student: NonAttribute<StudentModel>;
   @AllowNull(false)
   @Column(DataType.INTEGER)
   grade: number;
