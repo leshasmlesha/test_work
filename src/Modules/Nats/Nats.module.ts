@@ -1,22 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import configuration from '../../Config/configuration';
+import { NatsController } from './Nats.controller';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { GradeModel } from '../Database/models/Grade.model';
 
 @Module({
-  imports: [
-    ClientsModule.registerAsync({
-      clients: [
-        {
-          name: 'NATS_SERVICE',
-          useFactory: (config: ConfigType<typeof configuration>) => ({
-            transport: Transport.NATS,
-            options: { servers: [`nats://${config.server}`] },
-          }),
-          inject: [configuration.KEY],
-        },
-      ],
-    }),
-  ],
+  imports: [SequelizeModule.forFeature([GradeModel])],
+  controllers: [NatsController],
 })
 export class NatsModule {}
