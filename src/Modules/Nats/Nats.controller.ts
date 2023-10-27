@@ -16,6 +16,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { GradeModel } from '../Database/models/Grade.model';
 import configuration from '../../Config/configuration';
 import { ConfigType } from '@nestjs/config';
+import { StudentEntity } from './entities/StudentEntity';
 @Controller()
 export class NatsController implements OnModuleInit, OnApplicationBootstrap {
   constructor(
@@ -37,5 +38,10 @@ export class NatsController implements OnModuleInit, OnApplicationBootstrap {
   @MessagePattern('students.v1.graded')
   async getGrades(@Payload() data: GradedEntity) {
     await this.grade.create({ ...data });
+  }
+  getStudent(student: string) {
+    return this.client.send<StudentEntity>('students.v1.get', {
+      personalCode: student,
+    });
   }
 }
